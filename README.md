@@ -20,3 +20,16 @@
 
 ![](assets/output_image_tracking.png)
 
+# IV - Generate new picture
+
+---
+
+```bash
+export PYTHONPATH=$(pwd)
+python3 tools/generate_picutre.py assets/test_1.png 5
+```
+
+![](generate/picture_0.png)
+![](generate/picture_1.png)
+
+# V - Apply tracking of all pictures

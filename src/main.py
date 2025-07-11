@@ -13,6 +13,7 @@ class Main:
         filtered_image = PictureManager.apply_filter(img)
         PictureManager.save_image(filtered_image, "output_image_black_and_white.png")
         stars = Tracking.find_coordinate_of_all_stars(filtered_image)
+        stars = Tracking.remove_false_positive(stars)
         filtered_image = PictureManager.display_tracking_stars(filtered_image, stars)
         PictureManager.save_image(filtered_image, "output_image_tracking.png")
         print(stars)

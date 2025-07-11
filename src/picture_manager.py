@@ -26,10 +26,22 @@ class PictureManager:
     def display_tracking_stars(
         image: np.ndarray, stars: Dict[int, Tuple[float, float, float, float]]
     ) -> np.ndarray:
-        # before redo the image in color to accept to display the rectangles
         image = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
         for i, (x1, x2, y1, y2) in stars.items():
             cv2.rectangle(image, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
+        return image
+
+    @staticmethod
+    def generate_picture(
+        stars: Dict[int, Tuple[float, float, float, float]],
+        image_w: float,
+        image_h: float,
+    ) -> np.ndarray:
+        image = np.zeros((int(image_h), int(image_w), 3), dtype=np.uint8)
+        for x1, x2, y1, y2 in stars.values():
+            cv2.rectangle(
+                image, (int(x1), int(y1)), (int(x2), int(y2)), (255, 255, 255), -1
+            )
         return image
 
     @staticmethod

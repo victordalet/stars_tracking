@@ -21,3 +21,13 @@ class Tracking:
             coords_dict[i] = (x1, x2, y1, y2)
 
         return coords_dict
+
+    @staticmethod
+    def remove_false_positive(
+        stars: Dict[int, Tuple[float, float, float, float]], max_air: float = 10
+    ) -> Dict[int, Tuple[float, float, float, float]]:
+        new_stars = {}
+        for key, value in stars.items():
+            if value[1] - value[0] < max_air and value[3] - value[2] < max_air:
+                new_stars[key] = value
+        return new_stars
