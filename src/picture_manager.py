@@ -45,6 +45,23 @@ class PictureManager:
         return image
 
     @staticmethod
+    def display_vectors(
+        image: np.ndarray,
+        vectors: Dict[int, Tuple[Tuple[float, float], Tuple[float, float]]],
+    ) -> np.ndarray:
+        image = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
+        for i, (dx, dy) in vectors.items():
+            cv2.arrowedLine(
+                image,
+                (int(dx[0]), int(dx[1])),
+                (int(dy[0]), int(dy[1])),
+                (255, 0, 0),
+                2,
+                tipLength=0.1,
+            )
+        return image
+
+    @staticmethod
     def save_image(image: np.ndarray, path: str) -> None:
         success = cv2.imwrite(path, image)
         if not success:
